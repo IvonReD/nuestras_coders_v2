@@ -992,29 +992,28 @@ var data = {
 };
 
 
-var seleccionarOpcion = function (event) {
-  var indiceOpcion = (event.target.selectedIndex);
-  var sede = event.target[indiceOpcion].dataset.sede;
-  var generacion = event.target[indiceOpcion].dataset.generacion;
-   obtenerDatos(sede,generacion)
-
+ var seleccionarOpcion = function(event){
+    var indiceOpcion = (event.target.selectedIndex);
+    var sede = event.target[indiceOpcion].dataset.sede;
+    var generacion = event.target[indiceOpcion].dataset.generacion;
+    obtenerDatos(sede,generacion)
 }
 
-var obtenerDatos = function (sede,generacion) {
+
+var obtenerDatos = function(sede,generacion){
   //var estudiantes =  data.CDMX.generaciones_estudiantes.quinta.estudiantes;
   var estudiantes = data[sede]["generaciones_estudiantes"][generacion]["estudiantes"];
-  document.getElementById("contenedor-coders").innerHTML = "";
-  for (var i = 0; i < 3; i++) {
+  document.getElementById("contenedor-coders").innerHTML= "";
+  for(var i = 0; i < 3; i += 1){
       var nombre = estudiantes[i].nombre;
-      var turno = estudiantes[i].turno;
+      var turno =  estudiantes[i].turno;
       var mail = estudiantes[i].mail;
-      pintarCoders(nombre,turno,mail);
+      pintarCoders(nombre,turno, mail);
   }
 }
 
 
-
-var pintarCoders = function (nombre,turno,mail) {
+var pintarCoders = function(nombre,turno,mail){
 
   var plantilla = `<div class="coder plantilla">
       <img src="http://lorempixel.com/200/200/people/" class="foto-coder">
@@ -1035,12 +1034,13 @@ var pintarCoders = function (nombre,turno,mail) {
   var imagen = document.createElement("img");
   var divCoder = document.createElement("div");
 
+
   imagen.src = "http://lorempixel.com/200/200/people/";
   imagen.classList.add("foto-coder");
   divCoder.classList.add("coder");
   parrafoNombre.innerText = nombre;
   parrafoTurno.innerText = turno;
-  parrafoCorreo.innerText = correo;
+  parrafoCorreo.innerText = mail;
 
   divCoder.appendChild(imagen);
   divCoder.appendChild(parrafoNombre);
@@ -1049,6 +1049,5 @@ var pintarCoders = function (nombre,turno,mail) {
 
   contenedorCoders.appendChild(divCoder);
 
-}
 
-obtenerDatos();
+}
